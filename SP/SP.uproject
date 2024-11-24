@@ -1,6 +1,6 @@
 {
 	"FileVersion": 3,
-	"EngineAssociation": "{CF493B38-4340-D4A2-0CB4-4990F7AE6C45}",
+	"EngineAssociation": "5.5",
 	"Category": "",
 	"Description": "",
 	"Modules": [
@@ -17,6 +17,14 @@
 			"TargetAllowList": [
 				"Editor"
 			]
+		},
+		{
+			"Name": "GameplayAbilities",
+			"Enabled": true
+		},
+		{
+			"Name": "GameplayStateTree",
+			"Enabled": true
 		}
 	]
 }
