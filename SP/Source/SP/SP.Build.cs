@@ -16,6 +16,9 @@ public class SP : ModuleRules
 			"InputCore",
 			"EnhancedInput",
 			"GameplayAbilities",
+			"AIModule",
+			"GameplayTags",
+            "GameplayTasks"
 		});
 
 		PrivateDependencyModuleNames.AddRange(new string[] { });

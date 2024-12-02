@@ -1,14 +1,14 @@
 ﻿// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "SPCharacter.h"
-
-#include "SP/Attributes/AttributeSet_Health.h"
+#include "AbilitySystemInterface.h"
+#include "GameFramework/PlayerState.h"
+#include "SP/AI/SPAIController.h"
 
 ASPCharacter::ASPCharacter()
 {
 	PrimaryActorTick.bCanEverTick = true;
-
-	AbilitySystemComponent = CreateDefaultSubobject<UAbilitySystemComponent>("AbilitySystemComponent");
+	AIControllerClass = ASPAIController::StaticClass();
 }
 
 void ASPCharacter::BeginPlay()
@@ -28,5 +28,10 @@ void ASPCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompone
 
 UAbilitySystemComponent* ASPCharacter::GetAbilitySystemComponent() const
 {
-	return AbilitySystemComponent;
+	if (const IAbilitySystemInterface* ASI = Cast<IAbilitySystemInterface>(GetPlayerState()))
+	{
+		return ASI->GetAbilitySystemComponent();
+	}
+
+	return nullptr;
 }

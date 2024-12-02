@@ -3,9 +3,8 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "GameFramework/Character.h"
-#include "AbilitySystemComponent.h"
 #include "AbilitySystemInterface.h"
+#include "GameFramework/Character.h"
 #include "SPCharacter.generated.h"
 
 UCLASS()
@@ -24,15 +23,5 @@ public:
 
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
-
-#pragma region ASC
-
-public:
 	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const override;
-
-protected:
-	UPROPERTY(BlueprintReadWrite, EditDefaultsOnly)
-	UAbilitySystemComponent* AbilitySystemComponent;
-
-#pragma endregion
 };
