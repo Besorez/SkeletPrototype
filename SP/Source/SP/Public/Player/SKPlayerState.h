@@ -4,32 +4,27 @@
 
 #include "CoreMinimal.h"
 #include "AbilitySystemInterface.h"
-#include "GameFramework/Character.h"
+#include "GameFramework/PlayerState.h"
 
-#include "SKCharacterBase.generated.h"
+#include "SKPlayerState.generated.h"
 
 class UAttributeSet;
 
-UCLASS(Abstract)
-class SP_API ASKCharacterBase : public ACharacter, public IAbilitySystemInterface
+UCLASS()
+class SP_API ASKPlayerState : public APlayerState, public IAbilitySystemInterface
 {
 	GENERATED_BODY()
-
+	
 public:
-	ASKCharacterBase();
+	ASKPlayerState();
 
 	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const override;
 	FORCEINLINE TObjectPtr<UAttributeSet> GetAttributeSet() const { return AttributeSet; }
 
 protected:
-	virtual void BeginPlay() override;
-
-	UPROPERTY(EditAnywhere, Category = "Combat")
-	TObjectPtr<USkeletalMeshComponent> Weapon;
-
 	UPROPERTY()
 	TObjectPtr<UAbilitySystemComponent> AbilitySystemComponent;
-	
+
 	UPROPERTY()
 	TObjectPtr<UAttributeSet> AttributeSet;
 

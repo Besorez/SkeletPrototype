@@ -11,6 +11,11 @@ ASKCharacterBase::ASKCharacterBase()
 	Weapon->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 }
 
+UAbilitySystemComponent* ASKCharacterBase::GetAbilitySystemComponent() const
+{
+	return AbilitySystemComponent;
+}
+
 void ASKCharacterBase::BeginPlay()
 {
 	Super::BeginPlay();

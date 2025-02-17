@@ -14,4 +14,13 @@ class SP_API ASKSkeletCharacter : public ASKCharacterBase
 {
 	GENERATED_BODY()
 	
+public:
+	ASKSkeletCharacter();
+
+	virtual void PossessedBy(AController* NewController) override;
+	virtual void OnRep_PlayerState() override;
+
+private:
+	void InitAbilityActorInfo();
+
 };
