@@ -4,7 +4,9 @@
 
 #include "AbilitySystemComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
+#include "Player/SKPlayerController.h"
 #include "Player/SKPlayerState.h"
+#include "UI/HUD/SKHUD.h"
 
 ASKSkeletCharacter::ASKSkeletCharacter()
 {
@@ -41,4 +43,12 @@ void ASKSkeletCharacter::InitAbilityActorInfo()
 
 	AbilitySystemComponent = SKPlayerState->GetAbilitySystemComponent();
 	AttributeSet = SKPlayerState->GetAttributeSet();
+
+	if (ASKPlayerController* SKPlayerController = Cast<ASKPlayerController>(GetController()))
+	{
+		if (ASKHUD* SKHUD = Cast<ASKHUD>(SKPlayerController->GetHUD()))
+		{
+			SKHUD->InitOverlay(SKPlayerController, SKPlayerState, AbilitySystemComponent, AttributeSet);
+		}
+	}
 }
