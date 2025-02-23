@@ -33,6 +33,7 @@ void ASKEffectActor::OnOverlap(UPrimitiveComponent* OverlappedComponent, AActor*
 		const USKAttributeSet* AuraAttributeSet = Cast<USKAttributeSet>(ASCInterface->GetAbilitySystemComponent()->GetAttributeSet(USKAttributeSet::StaticClass()));
 		USKAttributeSet* MutableSKAttributeSet = const_cast<USKAttributeSet*>(AuraAttributeSet);
 		MutableSKAttributeSet->SetHealth(AuraAttributeSet->GetHealth() + 25.f);
+		MutableSKAttributeSet->SetMana(AuraAttributeSet->GetMana() - 25.f);
 		Destroy();
 	}
 }

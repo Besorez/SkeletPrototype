@@ -12,6 +12,7 @@ UOverlayWidgetController* ASKHUD::GetOverlayWidgetController(const FWidgetContro
 		OverlayWidgetController = NewObject<UOverlayWidgetController>(this, OverlayWidgetControllerClass);
 		OverlayWidgetController->SetWidgetControllerParams(WCParams);
 
+		OverlayWidgetController->BindCallbacksToDependencies();
 		return OverlayWidgetController;
 	}
 	return OverlayWidgetController;
@@ -28,7 +29,9 @@ void ASKHUD::InitOverlay(APlayerController* PC, APlayerState* PS, UAbilitySystem
 
 	const FWidgetControllerParams WidgetControllerParams(PC, PS, ASC, AS);
 	UOverlayWidgetController* WidgetController = GetOverlayWidgetController(WidgetControllerParams);
-	OverlayWidget->SetWidgetController(WidgetController);
 
+	OverlayWidget->SetWidgetController(WidgetController);
+	
+	WidgetController->BroadcastInitialValues();
 	Widget->AddToViewport();
 }
