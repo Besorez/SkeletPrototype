@@ -2,7 +2,9 @@
 
 #include "SPPlayerState.h"
 #include "AbilitySystemComponent.h"
+#include "GameplayEffectTypes.h"
 #include "SP/Abilities/SPAbilitySystemComponent.h"
+#include "SP/Attributes/AttributeSet_Health.h"
 
 ASPPlayerState::ASPPlayerState()
 {
@@ -23,9 +25,29 @@ void ASPPlayerState::EndPlay(const EEndPlayReason::Type EndPlayReason)
 	Super::EndPlay(EndPlayReason);
 }
 
+void ASPPlayerState::BeginPlay()
+{
+	Super::BeginPlay();
+
+	if (AbilitySystemComponent)
+	{
+		AbilitySystemComponent
+			->GetGameplayAttributeValueChangeDelegate(UAttributeSet_Health::GetHealthAttribute())
+			.AddUObject(this, &ASPPlayerState::OnHealthChanged);
+	}
+}
+
 void ASPPlayerState::OnPawnSetHandle(APlayerState* Player, APawn* NewPawn, APawn* OldPawn)
 {
 	AbilitySystemComponent->SetAvatarActor(NewPawn);
+}
+
+void ASPPlayerState::OnHealthChanged(const FOnAttributeChangeData& AttributeChangeData) const
+{
+	if (AttributeChangeData.NewValue <= 0)
+	{
+		OnDeath.Broadcast();
+	}
 }
 
 UAbilitySystemComponent* ASPPlayerState::GetAbilitySystemComponent() const

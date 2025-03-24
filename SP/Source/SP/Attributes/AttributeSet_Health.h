@@ -27,6 +27,7 @@ class SP_API UAttributeSet_Health : public UAttributeSet
 	UPROPERTY()
 	FGameplayAttributeData MaxHealth;
 
+public:
 	ATTRIBUTE_ACCESSORS(UAttributeSet_Health, Health)
 	ATTRIBUTE_ACCESSORS(UAttributeSet_Health, MaxHealth)
 };
